@@ -1,13 +1,13 @@
 # OpenVINO in Ubuntu Docker
 *April'19, vuiseng9*
 
-This repo aims to provide step-by-step setup of OpenVINO in Ubuntu docker environment on Intel CPU that also features integrated graphics. Steps will cover configuration and samples of Model Optimizer and Inference Engine.
+This repo aims to provide step-by-step setup of OpenVINO in Ubuntu docker environment on Intel CPU that also features integrated graphics. OpenVINO provides many examples but the documentatio, IMHO, provides only loose steps and many branching, this repo hopes to lay down the steps in a single readme and in a linear fashion - set up OpenVINO, configure Model Optimizer, download models in various framework and run some of out-of-the-box samples with Inference Engine.
 
 ## Tested System
 * Skylake Core i7-6770HQ (Skull Canyon NUC)
 * Kabylake Core i7-7500U 
 
-> Your contribution to this list is very much appreciated! Please add your processor if you have successfully complete the whole process on your system
+> Your contribution to this list is very much appreciated! Please add your processor if you have successfully complete the whole process on your system.
 
 ## Setup
 The approach we are taking here is an interactive docker build instead of the "Dockerfile" way due to the challenge of large prebuilt binary installation archive in git. *Yes, I am avoiding git-lfs* unless you would like to build OpenVINO from [source](https://github.com/opencv/dldt).
