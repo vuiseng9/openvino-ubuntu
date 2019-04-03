@@ -1,7 +1,7 @@
 # OpenVINO in Ubuntu Docker
 *April'19, vuiseng9*
 
-This repo aims to provide step-by-step setup of OpenVINO in Ubuntu docker environment on Intel CPU that also features integrated graphics. OpenVINO provides many examples but the documentatio, IMHO, provides only loose steps and many branching, this repo hopes to lay down the steps in a single readme and in a linear fashion - set up OpenVINO, configure Model Optimizer, download models in various framework and run some of out-of-the-box samples with Inference Engine.
+This repo aims to provide step-by-step setup of OpenVINO in Ubuntu docker environment. OpenVINO provides many examples but the documentation, IMHO, provides loose steps and many branching due to support of different platform. This repo targets only *CPU with Integrated Graphics* and hopes to lay down the steps in a single readme and in a linear fashion - set up OpenVINO, configure Model Optimizer, download models in various framework and run some of out-of-the-box samples with Inference Engine.
 
 ## Tested System
 * Skylake Core i7-6770HQ (Skull Canyon NUC)
@@ -10,7 +10,7 @@ This repo aims to provide step-by-step setup of OpenVINO in Ubuntu docker enviro
 > Your contribution to this list is very much appreciated! Please add your processor if you have successfully complete the whole process on your system.
 
 ## Setup
-The approach we are taking here is an interactive docker build instead of the "Dockerfile" way due to the challenge of large prebuilt binary installation archive in git. *Yes, I am avoiding git-lfs* unless you would like to build OpenVINO from [source](https://github.com/opencv/dldt).
+The approach we are taking here is a hybrid of interactive docker build and the "Dockerfile" way due to the challenge of storing large prebuilt binary installation archive in git. *Yes, I am avoiding git-lfs* On a side note, you could try to build OpenVINO from [source](https://github.com/opencv/dldt).
 
 1. [Set up Docker CE on host](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
