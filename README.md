@@ -1,11 +1,11 @@
 # OpenVINO in Ubuntu Docker
-*April'19, vuiseng9*
+*Apr'19, vuiseng9*
 
 This repo aims to provide step-by-step setup of OpenVINO in Ubuntu docker environment. OpenVINO provides many examples but the documentation, IMHO, provides loose steps and many branching due to support of different platform. This repo targets only *CPU with Integrated Graphics* and hopes to lay down the steps in a single readme and in a linear fashion, i.e. set up OpenVINO, configure Model Optimizer, download models in various framework and run some of out-of-the-box samples with Inference Engine.
 
 ## Tested System
-* Skylake Core i7-6770HQ (Skull Canyon NUC)
-* Kabylake Core i7-7500U 
+* Skylake Core i7-6770HQ, Iris Pro Graphics 580 (Skull Canyon NUC)
+* Kabylake Core i7-7500U, HD Graphics 620
 > Your contribution to this list is very much appreciated! Please add your processor if you have successfully complete the whole process on your system.
 
 ## Setup
@@ -29,6 +29,7 @@ The approach we are taking here is a hybrid of interactive docker build and the 
     ```
 3. In order to use the integrated graphics, graphics drivers, libVA and dependencies are required. We will build a docker base image that has these dependencies installed. This step is run on host.
     ```bash
+    cd ~
     git clone https://github.com/vuiseng9/openvino-ubuntu
     cd openvino-ubuntu/docker
     ./build_media_docker.sh
@@ -44,6 +45,7 @@ The approach we are taking here is a hybrid of interactive docker build and the 
         -v /tmp/.X11-unix:/tmp/.X11-unix \
         -v /home/${USER}:/hosthome \
         -v /home/${USER}/openvino-setup:/workspace/openvino-setup \
+        -v /home/${USER}/openvino-ubuntu:/workspace/openvino-ubuntu \
         --device=/dev/dri:/dev/dri \
         --privileged \
         -w /workspace \
@@ -65,6 +67,8 @@ The approach we are taking here is a hybrid of interactive docker build and the 
     ```bash
     cd /workspace/openvino-setup/neo
     dpkg -i *.deb
+
+    # By now, you should expect to see a list of devices that include iGPU by running "clinfo"
     ```
 8. Install OpenVINO
     ```bash
@@ -86,3 +90,18 @@ The approach we are taking here is a hybrid of interactive docker build and the 
     cd /opt/intel/computer_vision_sdk/deployment_tools/demo/
     ./demo_squeezenet_download_convert_run.sh
     ```
+
+## Model Optimizer
+This section configures Model Optimizer for DL frameworks and provides steps to translate to OpenVINO intermediate representation (IR) format.
+
+1. Download sample models, the default installation comes with a python script to download popular topologies.
+   ```bash
+   cd /workspace
+   $INTEL_CVSDK_DIR/deployment_tools/model_downloader/downloader.py --all -o nn_models
+   ```
+2. Some of the downloaded models are already in IR format. We will convert the rest of them to IR. We will only target CAFFE and Tensorflow models.
+   ```bash
+   cd /workspace/openvino-ubuntu
+   ./scripts/run_mo_caffe.sh 2>&1 | tee log.run_mo_caffe
+   ```
+
