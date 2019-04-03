@@ -15,6 +15,7 @@ RUN apt-get update && \
     autoconf \
     git \
     curl \
+    wget \
     vim \
     libdrm-dev \
     libgl1-mesa-glx \

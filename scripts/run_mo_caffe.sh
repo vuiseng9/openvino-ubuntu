@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-OUTROOT=/workspace/nn_models/IR
+OUTROOT=/hosthome/nn_models/IR
 MO_SCRIPT=${INTEL_CVSDK_DIR}/deployment_tools/model_optimizer/mo_caffe.py
 
 outdir=$OUTROOT/./classification/alexnet/caffe && mkdir -p $outdir

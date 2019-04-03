@@ -9,7 +9,7 @@ This repo aims to provide step-by-step setup of OpenVINO in Ubuntu docker enviro
 > Your contribution to this list is very much appreciated! Please add your processor if you have successfully complete the whole process on your system.
 
 ## Setup
-The approach we are taking here is a hybrid of interactive docker build and the "Dockerfile" way due to the challenge of storing large prebuilt binary installation archive in git. *Yes, I am avoiding git-lfs* On a side note, you could try to build OpenVINO from [source](https://github.com/opencv/dldt).
+The approach we are taking here is a hybrid of interactive docker build and the "Dockerfile" way due to the challenge of storing large prebuilt binary installation archive in git. *Yes, I am avoiding git-lfs.* On a side note, you could try to build OpenVINO from [source](https://github.com/opencv/dldt).
 
 1. [Set up Docker CE on host](https://docs.docker.com/install/linux/docker-ce/ubuntu/)
 
@@ -92,16 +92,24 @@ The approach we are taking here is a hybrid of interactive docker build and the 
     ```
 
 ## Model Optimizer
-This section configures Model Optimizer for DL frameworks and provides steps to translate to OpenVINO intermediate representation (IR) format.
+This section configures Model Optimizer for DL frameworks and provides steps to translate to OpenVINO intermediate representation (IR) format. We only focus Caffe and Tensorflow at the moment.
 
-1. Download sample models, the default installation comes with a python script to download popular topologies.
+1. Download sample models, the default installation comes with a python script to download popular topologies but mostly CAFFE models. We provides scripts to download Tensorflow models. Do note that we store the models on the host as they are large in size (tens of GB in total).
    ```bash
    cd /workspace
-   $INTEL_CVSDK_DIR/deployment_tools/model_downloader/downloader.py --all -o nn_models
+   # Run OpenVINO downloader
+   $INTEL_CVSDK_DIR/deployment_tools/model_downloader/downloader.py --all -o /hosthome/nn_models
+
+   # Download Frozen Tensorflow Models (object detection and quantized)
+   cd /workspace/openvino-ubuntu/scripts/
+   ./dl-tf-obj-det-frozen-mdl.sh
+   ./dl-tf-quant-frozen-mdl.sh
    ```
-2. Some of the downloaded models are already in IR format. We will convert the rest of them to IR. We will only target CAFFE and Tensorflow models.
+2. Some of the downloaded models are already in IR format. We will convert the rest of them to IR. 
    ```bash
    cd /workspace/openvino-ubuntu
    ./scripts/run_mo_caffe.sh 2>&1 | tee log.run_mo_caffe
    ```
 
+## References
+1. [OpenVINO Latest Documentation](https://docs.openvinotoolkit.org/)
