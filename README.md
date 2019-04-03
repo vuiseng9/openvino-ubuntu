@@ -49,7 +49,7 @@ The approach we are taking here is a hybrid of interactive docker build and the 
         -w /workspace \
         -it ${container} bash
     ```
-5. Install dependent packages
+5. Install dependencies
     ```bash
     apt-get update && \
     apt-get install -y \
