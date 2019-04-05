@@ -4,7 +4,7 @@
 ## The topologies hosted on the TensorFlow* Lite
 
 CWD=${PWD}
-DL_DIR=/hosthome/nn_models/tf-quant-mdl
+DL_DIR=/workspace/nn_models/tf-quant-mdl
 
 mkdir -p $DL_DIR && cd $DL_DIR
 

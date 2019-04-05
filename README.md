@@ -1,5 +1,7 @@
 # OpenVINO in Ubuntu Docker
-*Apr'19, vuiseng9*
+*Apr'19*
+
+> This repo is stil under development
 
 This repo aims to provide step-by-step setup of OpenVINO in Ubuntu docker environment. OpenVINO provides many examples but the documentation, IMHO, provides loose steps and many branching due to support of different platform. This repo targets only *CPU with Integrated Graphics* and hopes to lay down the steps in a single readme and in a linear fashion, i.e. set up OpenVINO, configure Model Optimizer, download models in various framework and run some of out-of-the-box samples with Inference Engine.
 
@@ -56,7 +58,7 @@ The approach we are taking here is a hybrid of interactive docker build and the 
     apt-get update && \
     apt-get install -y \
         autoconf git curl vim libdrm-dev libgl1-mesa-glx libgl1-mesa-dev sudo pciutils \
-        libx11-dev openbox unzip xorg xorg-dev cpio python3 lsb-core yasm clinfo
+        libx11-dev openbox unzip xorg xorg-dev cpio python3 lsb-core yasm clinfo eog
     ```
 6. Install OpenVINO dependent packages
     ```bash
@@ -94,9 +96,9 @@ The approach we are taking here is a hybrid of interactive docker build and the 
 ## Model Optimizer
 This section configures Model Optimizer for DL frameworks and provides steps to translate to OpenVINO intermediate representation (IR) format. We only focus Caffe and Tensorflow at the moment.
 
-1. Download sample models, the default installation comes with a python script to download popular topologies but mostly CAFFE models. We provides scripts to download Tensorflow models. Do note that we store the models on the host as they are large in size (tens of GB in total).
+1. Download sample models, the default installation comes with a python script to download popular topologies but mostly Caffe models. We provides scripts to download Tensorflow models. Do note that we store the models on the host as they are large in size (tens of GB in total).
    ```bash
-   cd /workspace
+   cd /workspace && mkdir -p /hosthome/nn_models && ln -sv /hosthome/nn_models .
    # Run OpenVINO downloader
    $INTEL_CVSDK_DIR/deployment_tools/model_downloader/downloader.py --all -o /hosthome/nn_models
 
@@ -110,6 +112,5 @@ This section configures Model Optimizer for DL frameworks and provides steps to 
    cd /workspace/openvino-ubuntu
    ./scripts/run_mo_caffe.sh 2>&1 | tee log.run_mo_caffe
    ```
-
 ## References
 1. [OpenVINO Latest Documentation](https://docs.openvinotoolkit.org/)

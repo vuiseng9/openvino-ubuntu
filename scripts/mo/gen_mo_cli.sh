@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 # This scripts help to traverse through a directory recursively
-# to locate Caffe, Tensorflow models and
+# to locate Caffe models and
 # generate corresponding Model Optimizer commandline to
 # translate models to IR format
 
