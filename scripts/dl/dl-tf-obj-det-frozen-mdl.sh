@@ -4,7 +4,7 @@
 # https://github.com/tensorflow/models/blob/master/research/object_detection/g3doc/detection_model_zoo.md
 
 CWD=${PWD}
-DL_DIR=/workspace/nn_models/tf-obj-det
+DL_DIR=/workspace/openvino-models/tf-obj-det
 
 mkdir -p $DL_DIR && cd $DL_DIR
 

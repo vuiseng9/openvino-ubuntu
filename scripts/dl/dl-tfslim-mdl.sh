@@ -7,7 +7,7 @@
 #   https://github.com/tensorflow/models/tree/master/research/slim/README.md
 
 CWD=${PWD}
-DL_DIR=/workspace/nn_models/tfslim-pre-freeze
+DL_DIR=/workspace/openvino-models/tfslim-pre-freeze
 
 mkdir -p $DL_DIR && cd $DL_DIR
 

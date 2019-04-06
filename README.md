@@ -95,23 +95,31 @@ The approach we are taking here is a hybrid of interactive docker build and the 
     ```
 
 ## Model Optimizer
-This section configures Model Optimizer for DL frameworks and provides steps to translate to OpenVINO intermediate representation (IR) format. We only focus Caffe and Tensorflow at the moment.
+If you complete the setup above, Model Optimizer has been configured. This section provides steps to translate DL frameworks models to OpenVINO intermediate representation (IR) format. We only focus Caffe and Tensorflow at the moment.
 
 1. Download sample models, the default installation comes with a python script to download popular topologies but mostly Caffe models. We provides scripts to download Tensorflow models. Do note that we store the models on the host as they are large in size (tens of GB in total).
    ```bash
-   cd /workspace && mkdir -p /hosthome/nn_models && ln -sv /hosthome/nn_models .
+   cd /workspace && mkdir -p /hosthome/openvino-models && ln -sv /hosthome/openvino-models .
    # Run OpenVINO downloader
-   $INTEL_CVSDK_DIR/deployment_tools/model_downloader/downloader.py --all -o /hosthome/nn_models
+   $INTEL_CVSDK_DIR/deployment_tools/model_downloader/downloader.py --all -o /hosthome/openvino-models
 
    # Download Frozen Tensorflow Models (object detection and quantized)
    cd /workspace/openvino-ubuntu/scripts/
    ./dl-tf-obj-det-frozen-mdl.sh
    ./dl-tf-quant-frozen-mdl.sh
+   ./dl-tfslim-mdl.sh
    ```
 2. Some of the downloaded models are already in IR format. We will convert the rest of them to IR. 
    ```bash
+   # Caffe
    cd /workspace/openvino-ubuntu
    ./scripts/run_mo_caffe.sh 2>&1 | tee log.run_mo_caffe
+
+   # Tensorflow
    ```
+
+## Inference Engine
+
+
 ## References
 1. [OpenVINO Latest Documentation](https://docs.openvinotoolkit.org/)
