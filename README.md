@@ -3,7 +3,7 @@
 
 > This repo is stil under development
 
-This repo aims to provide step-by-step setup of OpenVINO in Ubuntu:16.04 docker environment. OpenVINO provides many examples but the documentation, IMHO, provides loose steps and many branching due to support of different compute devices. This repo targets only *CPU with Integrated Graphics* and the USB Neural Compute Stick. We hope to capture the steps in a single readme and in a linear fashion, i.e. set up OpenVINO, configure Model Optimizer, download models in various framework and run some of out-of-the-box samples with Inference Engine.
+This repo aims to provide step-by-step setup of OpenVINO in Ubuntu:16.04 docker environment. OpenVINO provides many examples but the documentation, IMHO, provides scattered steps and many branching due to support of many compute devices. This repo targets only *CPU with Integrated Graphics* and the USB Neural Compute Stick. We hope to capture the steps in a single readme and in a linear fashion, i.e. set up OpenVINO, configure Model Optimizer, download models in various framework and run some of out-of-the-box samples with Inference Engine.
 
 ## Tested System
 * Skylake Core i7-6770HQ, Iris Pro Graphics 580 (Skull Canyon NUC)
