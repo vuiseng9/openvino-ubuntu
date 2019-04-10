@@ -121,7 +121,7 @@ If you complete the setup above, Model Optimizer has been configured. This secti
    ```
 
 ## Inference Engine
-   demos/samples provide text output to console or generate output picture(s). Since figuring out the input arguments could be challenging due to many combinations and many models, we provide the runnable CLI in form of bash script. You just need to execute the scripts.
+   Since figuring out the input arguments could be challenging due to many combinations and many models, we provide the runnable CLI in form of bash script. You just need to execute the scripts. Demos/samples provide text output to console or generate output picture(s). 
    * Samples
    ```bash
    cd /workspace/openvino-ubuntu/scripts/samples
