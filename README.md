@@ -107,7 +107,7 @@ If you complete the setup above, Model Optimizer has been configured. This secti
    cd /workspace/openvino-ubuntu/scripts/
    ./dl-tf-obj-det-frozen-mdl.sh
    ./dl-tf-quant-frozen-mdl.sh
-   ./dl-tfslim-mdl.sh
+   # ./dl-tfslim-mdl.sh
    ```
 2. Some of the downloaded models are already in IR format. We will convert the rest of them to IR. 
    ```bash
@@ -115,11 +115,23 @@ If you complete the setup above, Model Optimizer has been configured. This secti
    cd /workspace/openvino-ubuntu
    ./scripts/run_mo_caffe.sh 2>&1 | tee log.run_mo_caffe
 
-   # Tensorflow
+   # Tensorflow - only few models at the moment
+   cd /workspace/openvino-ubuntu
+   ./scripts/mo/run_mo_tf-obj-det.sh 2>&1 | tee log.run_mo_tf-obj-det
    ```
 
 ## Inference Engine
-
+   demos/samples provide text output to console or generate output picture(s). Since figuring out the input arguments could be challenging due to many combinations and many models, we provide the runnable CLI in form of bash script. You just need to execute the scripts.
+   * Samples
+   ```bash
+   cd /workspace/openvino-ubuntu/scripts/samples
+   # Run any script here
+   ```
+   * Demos
+   ```bash
+   cd /workspace/openvino-ubuntu/scripts/demos
+   # Run any script here
+   ```
 
 ## References
 1. [OpenVINO Latest Documentation](https://docs.openvinotoolkit.org/)
